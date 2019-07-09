@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <script src="angular.js"> </script>
+        <script src="app.js"></script>
+        <script src="controller.js"></script>
+        </head>
+        <style>
+            
+                table , th , td 
+                {
+                    border: 0px solid  ;
+                    border-collapse: collapse;
+                    padding: 5px;
+                }
+        </style>
+        <body>
+            
+            <div ng-app="addDataAPP" ng-controller="AddDataController">
+                <form name="myForm">
+                
+                <p style="position: relative; top: 150px; left:250px;"><b><font size="5px">Search:  </font>
+                <input type="text" ng-model="searchdata" height="10px"></p>
+                <table style="position: relative; top: 170px; left: 100px; width: 550px; ">
+                    
+                    <tr>
+                        <td>NAME</td>
+                        <td>EMPLOYEES</td>
+                        <td>HEAD OFFICE</td>
+                        <td>ACTION</td>
+                    <tr>
+                    <tr ng-repeat="company in companies | filter:searchdata ">
+                        <td><b>{{company.name}}</td>
+                        <td><b>{{company.employees}}</td>
+                        <td><b>{{company.headoffice}}</b></td>
+                        <td><b><button   ng-click="removeRow(index)" style="background-color: #0038df">Remove</button></td>
+                    </tr>
+                    
+                </table>
+                        
+                <table style="position: relative;padding: 150px; left:850px; ">
+                    
+                    <tr>
+                        <td colspan="2"><h1>Add a Company</h1></td>
+                     </tr>
+                    <tr>
+                         <td><b>Name: </td>
+                        <td><input type="text" name="name" ng-model="newCompany.name">
+                            <span ng-show="myForm.name.$invalid">Name required</span> 
+                        
+                        </td>
+                                
+                    </tr>
+                     <tr>
+                        <td><b>Employee:</td>
+                        <td><input type="number" ng-model="newCompany.employees"></td>
+                    </tr>
+                    <tr>
+                         <td><b>Head Office:</td>
+                         <td>
+                         <select ng-model="newCompany.headoffice" ng-options="city for city in cites">
+                            
+                             </select>
+                         
+                         </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div style="padding-left:100px">
+                            <button ng-click="addCompany()" style="background-color: #0038df ">Submit</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                </form>
+                </div>
+            
+        </body>
+ </html>
